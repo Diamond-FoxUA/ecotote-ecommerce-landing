@@ -1,0 +1,127 @@
+{
+  "common": {
+    "buttons": {
+      "buyNow": "Buy Now",
+      "buy": "Buy",
+      "send": "Send"
+    },
+    "copyright": "All rights reserved."
+  },
+  "homepage": {
+    "title": "EcoTote — Style that doesn't cost the Earth.",
+    "description": "Eco-friendly bags for those who care about the future. Choose style and sustainability with EcoTote.",
+    "imgAlt": "Solid beige and khaki cotton shopper bags without prints, displayed outdoors on a wooden stand next to a bicycle."
+  },
+  "promoBanner": {
+    "caption": "Natural",
+    "title": "Caring for the Planet",
+    "description": "We use organic cotton, recycled plastic, linen, and hemp to craft our bags.",
+    "imgAlt": "An eco-friendly green fabric tote bag featuring text on a dark wooden background, surrounded by crafting supplies including green textile layers, yarn spools, and vintage scissors."
+  },
+  "contact": {
+    "caption": "Contact Us",
+    "title": "Have questions? Get in touch with us!",
+    "description": "We are here to help!",
+    "imgAlt": "An eco-friendly cream cotton tote bag featuring a dark green botanical illustration, displayed on a wooden workspace surrounded by paper sketches and fabric color swatches.",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "John",
+      "email": "Email",
+      "emailPlaceholder": "hello@ecotote.com",
+      "message": "Message",
+      "messagePlaceholder": "Type your message here..."
+    }
+  },
+  "navigation": {
+    "aboutUs": "About Us",
+    "products": "Product Range",
+    "testimonials": "Reviews",
+    "contacts": "Contact",
+    "phone": "+38 (099) 909 11 22",
+    "email": "hello@ecotote.com"
+  },
+  "testimonials": {
+    "caption": "Reviews",
+    "title": "What Our Customers Say",
+    "testimonials": [
+      {
+        "id": 1,
+        "rating": 5,
+        "comment": "The bag is very comfortable and stylish, I use it every day!",
+        "name": "Anna"
+      },
+      {
+        "id": 2,
+        "rating": 5,
+        "comment": "Excellent quality of materials, pleasantly surprised.",
+        "name": "Ihor"
+      },
+      {
+        "id": 3,
+        "rating": 5,
+        "comment": "The bag completely matches the description, highly recommend!",
+        "name": "Olena"
+      },
+      {
+        "id": 4,
+        "rating": 4,
+        "comment": "Fast delivery and great customer service.",
+        "name": "Serhiy"
+      }
+    ]
+  },
+  "products": {
+    "caption": "Products",
+    "title": "Our Bags",
+    "products": [
+      {
+        "id": 1,
+        "title": "EcoBag Classic",
+        "description": "An elegant and spacious bag for everyday use.",
+        "price": 25
+      },
+      {
+        "id": 2,
+        "title": "EcoTote Shopper",
+        "description": "Perfect for shopping, featuring reinforced handles.",
+        "price": 30
+      },
+      {
+        "id": 3,
+        "title": "EcoBackpack Urban",
+        "description": "A comfortable city backpack with a dedicated laptop compartment.",
+        "price": 45
+      },
+      {
+        "id": 4,
+        "title": "EcoCrossbody Mini",
+        "description": "A compact crossbody bag for your absolute essentials.",
+        "price": 20
+      },
+      {
+        "id": 5,
+        "title": "EcoLunch Bag",
+        "description": "A stylish and practical bag for your meals.",
+        "price": 15
+      },
+      {
+        "id": 6,
+        "title": "EcoBeach Tote",
+        "description": "A large beach tote with a waterproof lining.",
+        "price": 35
+      },
+      {
+        "id": 7,
+        "title": "EcoTravel Duffle",
+        "description": "A spacious travel duffle with extra pockets.",
+        "price": 60
+      },
+      {
+        "id": 8,
+        "title": "EcoKids Bag",
+        "description": "A bright and comfortable bag for children.",
+        "price": 22
+      }
+    ]
+  }
+}
