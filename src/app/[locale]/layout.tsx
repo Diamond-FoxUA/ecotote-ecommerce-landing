@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { getDictionary } from "@/dictionaries";
 import { Fira_Sans, Comfortaa } from "next/font/google";
 import "./globals.css";
+
+import { getDictionary } from "@/dictionaries";
+import { DictionaryProvider } from "@/shared/context/DictionaryContext";
 
 const firaSans = Fira_Sans({
   variable: "--font-fira_sans",
@@ -71,6 +73,7 @@ export default async function LocaleLayoutRootLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const dict = await getDictionary(locale);
 
   return (
     <html
@@ -78,7 +81,9 @@ export default async function LocaleLayoutRootLayout({
       className={`${comfortaa.variable} ${firaSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <main className="flex flex-1 flex-col">{children}</main>
+        <DictionaryProvider dict={dict}>
+          <main className="flex flex-1 flex-col">{children}</main>
+        </DictionaryProvider>
       </body>
     </html>
   );
