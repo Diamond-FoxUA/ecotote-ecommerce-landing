@@ -31,7 +31,7 @@ export default function Navigation({ onClose }: { onClose?: () => void }) {
   return (
     <nav
       aria-label="Main Navigation"
-      className="flex flex-col w-full lg:flex-row lg:items-center lg:justify-between gap-24 h-full"
+      className="flex flex-col w-full lg:flex-row lg:items-center lg:justify-between gap-24 md:gap-16 h-full"
     >
       <Link
         onClick={onClose}
