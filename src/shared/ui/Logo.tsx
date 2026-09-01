@@ -9,7 +9,7 @@ export default function Logo({ width = 84, height = 36 }: LogoProps) {
       className="fill-foreground"
       width={width}
       height={height}
-      aria-label="Ecotote Logo"
+      aria-label="Ecotote Home"
     >
       <use href="/icons/sprite.svg#icon-logo"></use>
     </svg>

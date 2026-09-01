@@ -5,8 +5,10 @@ import "./globals.css";
 import { getDictionary } from "@/dictionaries";
 import { DictionaryProvider } from "@/shared/context/DictionaryContext";
 
+import Header from "@/widgets/Header";
+
 const firaSans = Fira_Sans({
-  variable: "--font-fira_sans",
+  variable: "--font-fira-sans",
   subsets: ["latin", "cyrillic"],
   weight: ["400", "600"],
 });
@@ -80,8 +82,9 @@ export default async function LocaleLayoutRootLayout({
       lang={locale}
       className={`${comfortaa.variable} ${firaSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col antialiased">
         <DictionaryProvider dict={dict}>
+          <Header />
           <main className="flex flex-1 flex-col">{children}</main>
         </DictionaryProvider>
       </body>

@@ -7,9 +7,6 @@ type Props = {
 export default async function Home({ params }: Props) {
   const { locale } = await params;
   const dict = await getDictionary(locale);
-  return (
-    <>
-      <h1>{dict.homepage.title}</h1>
-    </>
-  );
+  
+  return <h1>{dict.homepage.title}</h1>;
 }
