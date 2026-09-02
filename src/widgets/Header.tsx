@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
 
-import Link from "next/link";
 import Logo from "@/shared/ui/Logo";
-import Icon from "@/shared/ui/Icon";
+import BurgerBtn from "./BurgerBtn";
 import MobileMenu from "./MobileMenu";
 import Navigation from "./Navigation";
+import AddressList from "./AddressList";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,38 +14,17 @@ export default function Header() {
     <>
       <header className="fixed z-50 w-full py-4 px-5 md:px-8 lg:px-16 lg:py-5.75 bg-green-bg">
         <div className="flex justify-between items-center">
-          <Link
-            href="/"
-            className="lg:hidden hover:scale-110 active:scale-90 transition-transform duration-300"
-          >
-            <Logo width={84} height={36} />
-          </Link>
+          <Logo className="lg:w-[106.51px] lg:h-[45.65px]" />
 
-          <div className="hidden lg:block w-full">
-            <Navigation />
-          </div>
+          <Navigation className="hidden lg:block" />
+          <AddressList className="hidden lg:block" />
 
-          {!isMenuOpen ? (
-            <button
-              type="button"
-              onClick={() => setIsMenuOpen(true)}
-              className="lg:hidden active:scale-70 transition-transform duration-300"
-            >
-              <Icon iconName="icon-menu" size={32} />
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={() => setIsMenuOpen(false)}
-              className="lg:hidden active:scale-70 transition-transform duration-300"
-            >
-              <Icon
-                iconName="icon-close"
-                size={32}
-                className="scale-140 active:scale-130 transition-transform duration-300"
-              />
-            </button>
-          )}
+          <BurgerBtn
+            isOpen={isMenuOpen}
+            setIsOpen={() =>
+              isMenuOpen ? setIsMenuOpen(false) : setIsMenuOpen(true)
+            }
+          />
         </div>
       </header>
 

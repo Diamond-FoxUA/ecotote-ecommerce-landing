@@ -1,17 +1,20 @@
+import Link from "next/link";
+
 type LogoProps = {
-  width: number;
-  height: number;
+  className?: string;
 };
 
-export default function Logo({ width = 84, height = 36 }: LogoProps) {
+export default function Logo({ className }: LogoProps) {
   return (
-    <svg
-      className="fill-foreground"
-      width={width}
-      height={height}
-      aria-label="Ecotote Home"
-    >
-      <use href="/icons/sprite.svg#icon-logo"></use>
-    </svg>
+    <Link href="/">
+      <svg
+        className={`fill-foreground ${className ? className : ""}`}
+        width={84}
+        height={36}
+        aria-label="Ecotote Home"
+      >
+        <use href="/icons/sprite.svg#icon-logo"></use>
+      </svg>
+    </Link>
   );
 }
