@@ -14,7 +14,7 @@ export default function Footer() {
     <footer className="flex flex-col items-center gap-6 lg:gap-13 bg-green-bg px-5 md:px-8 lg:px-16 py-12 md:py-16 lg:py-20">
       <div className="text-center flex flex-col w-full lg:flex-row justify-center lg:justify-between gap-12 md:gap-8 items-center">
         <Logo className="w-70 h-30.25 md:w-41 md:h-17.5" />
-        <NavList className="md:flex-row pr-16" />
+        <NavList className="md:flex-row lg:pr-16" />
         <SocialLinks className="md:w-10 md:h-10 lg:w-6 lg:h-6" />
       </div>
 
