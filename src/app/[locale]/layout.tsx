@@ -6,6 +6,7 @@ import { getDictionary } from "@/dictionaries";
 import { DictionaryProvider } from "@/shared/context/DictionaryContext";
 
 import Header from "@/widgets/Header";
+import Footer from "@/widgets/Footer";
 
 const firaSans = Fira_Sans({
   variable: "--font-fira-sans",
@@ -86,6 +87,7 @@ export default async function LocaleLayoutRootLayout({
         <DictionaryProvider dict={dict}>
           <Header />
           <main className="flex flex-1 flex-col">{children}</main>
+          <Footer />
         </DictionaryProvider>
       </body>
     </html>

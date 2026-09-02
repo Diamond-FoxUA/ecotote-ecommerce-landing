@@ -12,8 +12,10 @@ export default function AddressList({ onClose, className }: AddressListProps) {
   const addressItems = [navDict.phone, navDict.email];
 
   return (
-    <address className={`not-italic ${className ? className : ""}`}>
-      <ul className="flex flex-col lg:flex-row gap-4">
+    <address className={`not-italic `}>
+      <ul
+        className={`flex flex-col lg:flex-row gap-4 ${className ? className : ""}`}
+      >
         {addressItems.map((i) => (
           <li key={i}>
             <a

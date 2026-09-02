@@ -3,9 +3,10 @@ import Link from "next/link";
 
 type NavListProps = {
   onClose?: () => void;
+  className?: string;
 };
 
-export default function NavList({ onClose }: NavListProps) {
+export default function NavList({ onClose, className }: NavListProps) {
   const dict = useDictionary();
   const navDict = dict.navigation;
 
@@ -29,7 +30,9 @@ export default function NavList({ onClose }: NavListProps) {
   ];
 
   return (
-    <ul className="flex flex-col lg:flex-row gap-8">
+    <ul
+      className={`flex flex-col lg:flex-row gap-8 ${className ? className : ""}`}
+    >
       {navItems.map((i) => (
         <li key={i.link}>
           <Link

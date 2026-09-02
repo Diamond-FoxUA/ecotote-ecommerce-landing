@@ -6,7 +6,7 @@ type LogoProps = {
 
 export default function Logo({ className }: LogoProps) {
   return (
-    <Link href="/">
+    <Link href="/" >
       <svg
         className={`fill-foreground ${className ? className : ""}`}
         width={84}

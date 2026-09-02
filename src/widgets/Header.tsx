@@ -14,10 +14,14 @@ export default function Header() {
     <>
       <header className="fixed z-50 w-full py-4 px-5 md:px-8 lg:px-16 lg:py-5.75 bg-green-bg">
         <div className="flex justify-between items-center">
-          <Logo className="lg:w-[106.51px] lg:h-[45.65px]" />
+          <div className="hover:scale-110 active:scale-90 transition-transform duration-300">
+            <Logo className="lg:w-[106.51px] lg:h-[45.65px]" />
+          </div>
 
           <Navigation className="hidden lg:block" />
-          <AddressList className="hidden lg:block" />
+          <div className="hidden lg:block">
+            <AddressList />
+          </div>
 
           <BurgerBtn
             isOpen={isMenuOpen}
