@@ -8,11 +8,14 @@ type BurgerBtn = {
 export default function BurgerBtn({ isOpen, setIsOpen }: BurgerBtn) {
   return (
     <button
+      aria-label={`${isOpen ? "Close" : "Open"} mobile menu`}
+      aria-expanded={isOpen}
       type="button"
       onClick={setIsOpen}
       className="lg:hidden active:scale-70 transition-transform duration-300"
     >
       <Icon
+        aria-hidden="true"
         iconName={`icon-${isOpen ? "close" : "menu"}`}
         size={32}
         className={`${isOpen ? "scale-140 active:scale-130 transition-transform duration-300" : ""}`}
