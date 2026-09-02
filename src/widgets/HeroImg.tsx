@@ -46,6 +46,7 @@ export default async function HeroImg({ params }: HeroImgProps) {
         srcSet={mobileProps.srcSet}
         alt={imgAlt}
         loading="eager"
+        fetchPriority="high"
         className="w-[288px] h-71.25 md:w-176 md:h-[267.22px] lg:w-328 lg:h-124.5 rounded-[2.5rem]"
       />
     </picture>
