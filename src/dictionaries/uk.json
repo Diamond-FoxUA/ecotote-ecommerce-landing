@@ -43,6 +43,8 @@
   "testimonials": {
     "caption": "Відгуки",
     "title": "Що говорять наші клієнти",
+    "ratingCaption": "Рейтинг:",
+    "starsCaption": "зірок",
     "testimonials": [
       {
         "id": 1,

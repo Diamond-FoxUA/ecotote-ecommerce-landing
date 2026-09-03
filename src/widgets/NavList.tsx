@@ -13,7 +13,7 @@ export default function NavList({ onClose, className }: NavListProps) {
   const navItems = [
     {
       text: navDict.aboutUs,
-      link: "#about",
+      link: "#features",
     },
     {
       text: navDict.products,
