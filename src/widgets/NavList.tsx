@@ -38,7 +38,7 @@ export default function NavList({ onClose, className }: NavListProps) {
           <Link
             onClick={onClose}
             href={i.link}
-            className="font-fira text-[1rem] leading-[160%] border-b border-transparent hover:border-foreground active:text-foreground/70 active:border-foreground/70 pb-1 transition-all duration-300"
+            className="font-fira text-[1rem] leading-[160%] border-b border-transparent hover:border-foreground active:text-green-accent active:border-green-accent pb-1 transition-all duration-300"
           >
             {i.text}
           </Link>

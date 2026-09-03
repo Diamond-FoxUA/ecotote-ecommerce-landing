@@ -1,5 +1,5 @@
 import { getDictionary } from "@/dictionaries";
-import Link from "next/link";
+
 import HeroImg from "./HeroImg";
 import LinkBtn from "@/shared/ui/LinkBtn";
 
