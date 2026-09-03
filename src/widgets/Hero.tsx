@@ -1,6 +1,7 @@
 import { getDictionary } from "@/dictionaries";
 import Link from "next/link";
 import HeroImg from "./HeroImg";
+import LinkBtn from "@/shared/ui/LinkBtn";
 
 type HeroProps = {
   params: Promise<{ locale: string }>;
@@ -28,12 +29,8 @@ export default async function Hero({ params }: HeroProps) {
           <p className="md:text-[1.13rem] leading-[160%]">
             {dict.homepage.description}
           </p>
-          <Link
-            href="#products"
-            className="text-white text-[1rem] leading-[160%] flex justify-center items-center w-full max-w-98.25 p-3 bg-foreground rounded-[0.38rem]"
-          >
-            {dict.common.buttons.buyNow}
-          </Link>
+
+          <LinkBtn href="#products">{dict.common.buttons.buyNow}</LinkBtn>
         </div>
       </div>
 
