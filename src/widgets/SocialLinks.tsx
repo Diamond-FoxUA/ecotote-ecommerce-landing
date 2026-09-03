@@ -33,6 +33,7 @@ export default function SocialLinks({ className }: SocialLinksProps) {
         >
           <Link href={l.link}>
             <Icon
+              aria-label={l.text}
               iconName={`icon-${l.text}`}
               size={32}
               className={className ? className : ""}
