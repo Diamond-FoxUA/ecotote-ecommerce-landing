@@ -1,8 +1,8 @@
 "use client";
 import Logo from "@/shared/ui/Logo";
 import NavList from "./NavList";
-import SocialLinks from "./SocialLinks";
-import AddressList from "./AddressList";
+import SocialLinks from "../shared/ui/SocialLinks";
+import AddressList from "../features/contacts/AddressList";
 
 import { useDictionary } from "@/shared/context/DictionaryContext";
 

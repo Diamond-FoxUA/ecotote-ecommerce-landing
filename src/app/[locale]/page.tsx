@@ -1,7 +1,8 @@
 import Hero from "@/widgets/Hero";
 import Feature from "@/widgets/Features";
 import Testimonials from "@/widgets/Testimonials";
-import Products from "@/widgets/Products";
+import Products from "@/features/catalog/Products";
+// import Contacts from "@/features/contacts/Contacts";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -14,7 +15,7 @@ export default async function Home({ params }: Props) {
       <Feature params={params} />
       <Products params={params} />
       <Testimonials params={params} />
-      {/* Contacts */}
+      {/* <Contacts params={params} /> */}
     </>
   );
 }

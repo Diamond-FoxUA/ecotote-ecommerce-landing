@@ -1,4 +1,4 @@
-import AddressList from "./AddressList";
+import AddressList from "../features/contacts/AddressList";
 import Navigation from "./Navigation";
 
 export default function MobileMenu({

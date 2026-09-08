@@ -1,5 +1,5 @@
 import { getDictionary } from "@/dictionaries";
-import Rating from "./Rating";
+import Rating from "../shared/ui/Rating";
 
 type TestimonialsParams = {
   params: Promise<{ locale: string }>;

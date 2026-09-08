@@ -2,10 +2,10 @@
 import { useState, useEffect } from "react";
 
 import Logo from "@/shared/ui/Logo";
-import BurgerBtn from "./BurgerBtn";
+import BurgerBtn from "../shared/ui/BurgerBtn";
 import MobileMenu from "./MobileMenu";
 import Navigation from "./Navigation";
-import AddressList from "./AddressList";
+import AddressList from "../features/contacts/AddressList";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
