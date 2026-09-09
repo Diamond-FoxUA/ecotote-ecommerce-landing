@@ -2,7 +2,7 @@ import Hero from "@/widgets/Hero";
 import Feature from "@/widgets/Features";
 import Testimonials from "@/widgets/Testimonials";
 import Products from "@/features/catalog/Products";
-import Contacts from "@/features/contacts/Contacts";
+import Contacts from "@/features/contacts/components/Contacts";
 
 type Props = {
   params: Promise<{ locale: string }>;

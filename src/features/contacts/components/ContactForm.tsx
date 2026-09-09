@@ -2,18 +2,12 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import z from "zod";
+import { type ContactInput, contactSchema } from "../contactSchema";
+import { sendContactMessage } from "../actions";
 
 import { toast } from "sonner";
 import ActionBtn from "@/shared/ui/ActionBtn";
 import { useDictionary } from "@/shared/context/DictionaryContext";
-
-const schema = z.object({
-  name: z.string().min(2, "Minimum 2 characters"),
-  email: z.string().email("Invalid email"),
-  message: z.string().min(10, "Minimum 10 characters"),
-  honeypot: z.string().optional(),
-});
 
 export default function ContactForm() {
   const dict = useDictionary();
@@ -24,12 +18,22 @@ export default function ContactForm() {
     reset,
     formState: { errors, isSubmitting },
   } = useForm({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(contactSchema),
   });
 
-  const onSubmit = () => {
-    toast.success("Submitted!");
-    reset();
+  const onSubmit = async (data: ContactInput) => {
+    toast.promise(sendContactMessage(data), {
+      loading: "Sending your message...",
+      success: (res) => {
+        if (!res.success) {
+          throw new Error(res.error || "Failed to send");
+        }
+
+        reset();
+        return "Message sent successfully!";
+      },
+      error: (err) => err.message || "Something went wrong.",
+    });
   };
 
   return (
@@ -46,11 +50,17 @@ export default function ContactForm() {
           {...register("name")}
           className={`leading-[160%] placeholder:text-foreground/60 bg-foreground/5 focus:border-foreground/15 outline-none block w-full px-3 py-2 border rounded-[0.38rem] pb-2 caret-foreground ${errors.name ? "text-error border-error" : "text-foreground border-foreground/15"}`}
           type="text"
-          name="name"
+          aria-required="true"
+          aria-invalid={errors.name ? "true" : "false"}
+          aria-describedby={errors.name ? "name-error" : undefined}
           id="name"
           placeholder={dict.contact.form.namePlaceholder}
         />
-        <span className="text-[0.75rem] text-error leading-[160%]">
+        <span
+          role="alert"
+          id="name-error"
+          className="text-[0.75rem] text-error leading-[160%]"
+        >
           {errors.name?.message}
         </span>
       </div>
@@ -63,11 +73,17 @@ export default function ContactForm() {
           {...register("email")}
           className="leading-[160%] placeholder:text-foreground/60 bg-foreground/5 focus:border-foreground/15 outline-none block w-full px-3 py-2 border border-foreground/15 rounded-[0.38rem] pb-2 caret-foreground"
           type="email"
-          name="email"
           id="email"
+          aria-required="true"
+          aria-invalid={errors.email ? "true" : "false"}
+          aria-describedby={errors.email ? "email-error" : undefined}
           placeholder={dict.contact.form.emailPlaceholder}
         />
-        <span className="text-[0.75rem] text-error leading-[160%]">
+        <span
+          role="alert"
+          id="email-error"
+          className="text-[0.75rem] text-error leading-[160%]"
+        >
           {errors.email?.message}
         </span>
       </div>
@@ -79,12 +95,18 @@ export default function ContactForm() {
         <textarea
           {...register("message")}
           className="leading-[160%] placeholder:text-foreground/60 bg-foreground/5 focus:border-foreground/15 outline-none block w-full h-45 px-3 py-2 border border-foreground/15 rounded-[0.38rem] pb-2 resize-none overflow-y-auto caret-foreground"
-          name="message"
           id="message"
           placeholder={dict.contact.form.messagePlaceholder}
           maxLength={200}
+          aria-required="true"
+          aria-invalid={errors.message ? "true" : "false"}
+          aria-describedby={errors.message ? "message-error" : undefined}
         />
-        <span className="text-[0.75rem] text-error leading-[160%]">
+        <span
+          role="alert"
+          id="message-error"
+          className="text-[0.75rem] text-error leading-[160%]"
+        >
           {errors.message?.message}
         </span>
       </div>

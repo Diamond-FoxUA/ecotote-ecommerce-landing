@@ -5,7 +5,7 @@ import Logo from "@/shared/ui/Logo";
 import BurgerBtn from "../shared/ui/BurgerBtn";
 import MobileMenu from "./MobileMenu";
 import Navigation from "./Navigation";
-import AddressList from "../features/contacts/AddressList";
+import AddressList from "../features/contacts/components/AddressList";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

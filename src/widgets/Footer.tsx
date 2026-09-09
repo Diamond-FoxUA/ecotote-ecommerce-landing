@@ -2,7 +2,7 @@
 import Logo from "@/shared/ui/Logo";
 import NavList from "./NavList";
 import SocialLinks from "../shared/ui/SocialLinks";
-import AddressList from "../features/contacts/AddressList";
+import AddressList from "../features/contacts/components/AddressList";
 
 import { useDictionary } from "@/shared/context/DictionaryContext";
 
