@@ -5,6 +5,7 @@ import "./globals.css";
 import { getDictionary } from "@/dictionaries";
 import { DictionaryProvider } from "@/shared/context/DictionaryContext";
 
+import { Toaster } from "sonner";
 import Header from "@/widgets/Header";
 import Footer from "@/widgets/Footer";
 
@@ -88,6 +89,8 @@ export default async function LocaleLayoutRootLayout({
           <Header />
           <main className="flex flex-1 flex-col">{children}</main>
           <Footer />
+
+          <Toaster richColors closeButton />
         </DictionaryProvider>
       </body>
     </html>
