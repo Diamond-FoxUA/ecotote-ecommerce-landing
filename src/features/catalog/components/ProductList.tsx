@@ -1,25 +1,28 @@
-import { getDictionary } from "@/dictionaries";
-import ProductImg from "./ProductImg";
+"use client";
+import { useState, useEffect } from "react";
+import type { Product } from "./OrderFormDialog";
+
 import ActionBtn from "@/shared/ui/ActionBtn";
+import { useDictionary } from "@/shared/context/DictionaryContext";
+import ProductImg from "./ProductImg";
+import OrderFormDialog from "./OrderFormDialog";
 
-type ProductsProps = {
-  params: Promise<{ locale: string }>;
-};
+export default function ProductList() {
+  const dict = useDictionary();
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-export default async function Products({ params }: ProductsProps) {
-  const { locale } = await params;
-  const dict = await getDictionary(locale);
+  useEffect(() => {
+    if (selectedProduct) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    return () => document.body.classList.remove("overflow-hidden");
+  }, [selectedProduct]);
 
   return (
-    <section
-      id="products"
-      aria-label={dict.products.caption}
-      className="flex flex-col items-center gap-4 w-full px-4 py-6 md:gap-8 md:py-16 md:px-4 lg:p-16 scroll-mt-15 lg:scroll-mt-20"
-    >
-      <h2 className="font-comfortaa font-bold text-[2.25rem] lg:text-[3rem] leading-[120%] tracking-[0.01em] text-center">
-        {dict.products.title}
-      </h2>
-
+    <>
       <ul className="flex flex-col gap-10 md:flex-row md:flex-wrap md:gap-x-6 md:gap-y-12 lg:gap-y-16 w-full items-center md:items-stretch justify-center">
         {dict.products.products.map((p) => (
           <li
@@ -44,13 +47,24 @@ export default async function Products({ params }: ProductsProps) {
                 </strong>
               </div>
 
-              <ActionBtn type="button" variant="secondary">
+              <ActionBtn
+                type="button"
+                variant="secondary"
+                onClick={() => setSelectedProduct(p)}
+              >
                 {dict.common.buttons.buy}
               </ActionBtn>
             </article>
           </li>
         ))}
       </ul>
-    </section>
+
+      {selectedProduct && (
+        <OrderFormDialog
+          onClose={() => setSelectedProduct(null)}
+          product={selectedProduct}
+        />
+      )}
+    </>
   );
 }

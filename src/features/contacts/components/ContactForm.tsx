@@ -38,7 +38,10 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
-      <div className="hidden" aria-hidden="true">
+      <div
+        className="w-0 h-0 overflow-hidden -z-50 opacity-0 absolute"
+        aria-hidden="true"
+      >
         <input {...register("honeypot")} tabIndex={-1} autoComplete="off" />
       </div>
 
@@ -56,13 +59,13 @@ export default function ContactForm() {
           id="name"
           placeholder={dict.contact.form.namePlaceholder}
         />
-        <span
+        <p
           role="alert"
           id="name-error"
           className="text-[0.75rem] text-error leading-[160%]"
         >
           {errors.name?.message}
-        </span>
+        </p>
       </div>
 
       <div className="flex flex-col gap-2">
@@ -79,13 +82,13 @@ export default function ContactForm() {
           aria-describedby={errors.email ? "email-error" : undefined}
           placeholder={dict.contact.form.emailPlaceholder}
         />
-        <span
+        <p
           role="alert"
           id="email-error"
           className="text-[0.75rem] text-error leading-[160%]"
         >
           {errors.email?.message}
-        </span>
+        </p>
       </div>
 
       <div className="flex flex-col gap-2">
@@ -102,13 +105,13 @@ export default function ContactForm() {
           aria-invalid={errors.message ? "true" : "false"}
           aria-describedby={errors.message ? "message-error" : undefined}
         />
-        <span
+        <p
           role="alert"
           id="message-error"
           className="text-[0.75rem] text-error leading-[160%]"
         >
           {errors.message?.message}
-        </span>
+        </p>
       </div>
 
       <ActionBtn
