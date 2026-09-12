@@ -6,9 +6,11 @@ import { useRef } from "react";
 
 import { productSchema } from "../orderSchema";
 import type { orderInput } from "../orderSchema";
+import { createProductOrder } from "../actions";
 
 import Icon from "@/shared/ui/Icon";
 import ActionBtn from "@/shared/ui/ActionBtn";
+import { toast, Toaster } from "sonner";
 
 export type Product = {
   id: number;
@@ -46,10 +48,42 @@ export default function OrderFormDialog({
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(productSchema),
+    defaultValues: {
+      productId: "",
+      productName: "",
+      price: "",
+      customerName: "",
+      phoneOrTelegram: "",
+      honeypot: "",
+    },
   });
 
-  const onSubmit = async (data: orderInput) => {
-    console.log(data);
+  const onSubmit = (data: orderInput) => {
+    if (!product) return;
+
+    const fullOrderPayload: orderInput = {
+      productId: String(product.id),
+      productName: product.title,
+      price: `${product.price}`,
+      customerName: data.customerName,
+      phoneOrTelegram: data.phoneOrTelegram,
+      honeypot: data.honeypot,
+    };
+
+    toast.promise(createProductOrder(fullOrderPayload), {
+      loading: "Processing your order allocation...",
+      success: (res) => {
+        if (!res.success)
+          throw new Error(res.error || "Order validation rejected.");
+
+        reset();
+        return "Order submitted successfully! We will reach our shortly.";
+      },
+      error: (err) =>
+        err.message || "Failed to submit order. Please try again.",
+    });
+
+    onClose();
   };
 
   return (
@@ -143,7 +177,9 @@ export default function OrderFormDialog({
             )}
           </div>
 
-          <ActionBtn className="mt-6">Buy</ActionBtn>
+          <ActionBtn type="submit" disabled={isSubmitting} className="mt-6">
+            Buy
+          </ActionBtn>
         </form>
       </div>
     </dialog>

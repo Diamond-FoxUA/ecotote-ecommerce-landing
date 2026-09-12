@@ -1,12 +1,10 @@
 import z from "zod";
 
 export const productSchema = z.object({
-  productId: z.number(),
-
+  productId: z.string(),
   productName: z.string(),
-  productPrice: z.string(),
-
-  customerName: z.string().min(4, "Name must be at least 4 characters long."),
+  price: z.string(),
+  customerName: z.string().min(2, "Name must be at least 2 characters long"),
   phoneOrTelegram: z
     .string()
     .min(5, "Please enter a valid phone number or Telegram @username"),
