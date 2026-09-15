@@ -1,5 +1,6 @@
 import AddressList from "../features/contacts/components/AddressList";
 import Navigation from "./Navigation";
+import LangSwitcher from "@/shared/ui/LangSwitcher";
 
 export default function MobileMenu({
   className,
@@ -16,6 +17,8 @@ export default function MobileMenu({
       <Navigation onClose={onClose} />
 
       <AddressList />
+
+      <LangSwitcher />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import BurgerBtn from "../shared/ui/BurgerBtn";
 import MobileMenu from "./MobileMenu";
 import Navigation from "./Navigation";
 import AddressList from "../features/contacts/components/AddressList";
+import LangSwitcher from "@/shared/ui/LangSwitcher";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,8 +30,9 @@ export default function Header() {
           </div>
 
           <Navigation className="hidden lg:block" />
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex gap-10 items-center">
             <AddressList />
+            <LangSwitcher />
           </div>
 
           <BurgerBtn
