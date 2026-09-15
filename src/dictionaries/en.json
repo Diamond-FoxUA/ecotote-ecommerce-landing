@@ -160,7 +160,7 @@
     ],
     "demoNotice": {
       "title": "Live Demo Mode Active",
-      "text": "Try ordering any plan right now! Every submission is processed via Next.js Server Actions and delivered in real-time to my public Telegram CRM feed.",
+      "text": "Try ordering any plan right now! Every submission and review is processed via Next.js Server Actions and delivered in real-time to my public Telegram CRM feed.",
       "buttonLink": "Open Telegram Feed"
     },
     "form": {
