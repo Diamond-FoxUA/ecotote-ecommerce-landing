@@ -82,6 +82,7 @@ export default async function LocaleLayoutRootLayout({
   return (
     <html
       lang={locale}
+      data-scroll-behavior="smooth"
       className={`${comfortaa.variable} ${firaSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col antialiased">

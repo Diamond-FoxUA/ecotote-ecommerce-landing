@@ -1,5 +1,4 @@
 import { useDictionary } from "@/shared/context/DictionaryContext";
-import Link from "next/link";
 
 type NavListProps = {
   onClose?: () => void;
@@ -13,21 +12,38 @@ export default function NavList({ onClose, className }: NavListProps) {
   const navItems = [
     {
       text: navDict.aboutUs,
-      link: "#features",
+      link: "features",
     },
     {
       text: navDict.products,
-      link: "#products",
+      link: "products",
     },
     {
       text: navDict.testimonials,
-      link: "#testimonials",
+      link: "testimonials",
     },
     {
       text: navDict.contacts,
-      link: "#contacts",
+      link: "contacts",
     },
   ];
+
+  const handleScroll = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    targetId: string,
+  ) => {
+    e.preventDefault();
+
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+
+    if (onClose) onClose();
+  };
 
   return (
     <ul
@@ -35,13 +51,13 @@ export default function NavList({ onClose, className }: NavListProps) {
     >
       {navItems.map((i) => (
         <li key={i.link}>
-          <Link
-            onClick={onClose}
-            href={i.link}
-            className="font-fira text-[1rem] leading-[160%] border-b border-transparent hover:border-foreground active:text-green-accent active:border-green-accent pb-1 transition-all duration-300"
+          <button
+            type="button"
+            onClick={(e) => handleScroll(e, i.link)}
+            className="font-fira text-[1rem] leading-[160%] border-b border-transparent hover:border-foreground text-foreground active:text-green-accent active:border-green-accent pb-1 transition-all duration-300 cursor-pointer text-left w-full lg:w-auto outline-none"
           >
             {i.text}
-          </Link>
+          </button>
         </li>
       ))}
     </ul>
