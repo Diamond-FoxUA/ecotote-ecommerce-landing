@@ -3,7 +3,10 @@
     "buttons": {
       "buyNow": "Buy Now",
       "buy": "Buy",
-      "send": "Send"
+      "send": "Send",
+      "processing": "Processing...",
+      "loading": "Loading...",
+      "sending": "Sending..."
     },
     "copyright": "All rights reserved.",
     "price": "Price: "
@@ -30,7 +33,12 @@
       "email": "Email",
       "emailPlaceholder": "hello@ecotote.com",
       "message": "Message",
-      "messagePlaceholder": "Type your message here..."
+      "messagePlaceholder": "Type your message here...",
+      "errors": {
+        "nameMin": "Minimum 2 characters",
+        "emailInvalid": "Invalid email",
+        "messageMin": "Minimum 10 characters"
+      }
     }
   },
   "navigation": {
@@ -149,6 +157,26 @@
         "imgDesk": "/img/desk/products/bag-8-desk@2x.jpg",
         "price": 22
       }
-    ]
+    ],
+    "demoNotice": {
+      "title": "Live Demo Mode Active",
+      "text": "Try ordering any plan right now! Every submission is processed via Next.js Server Actions and delivered in real-time to my public Telegram CRM feed.",
+      "buttonLink": "Open Telegram Feed"
+    },
+    "form": {
+      "title": "Checkout",
+      "subtitle": "Please provide your details below to finalize your booking.",
+      "customerName": "Name",
+      "namePlaceholder": "Enter your name...",
+      "phoneOrTelegram": "Phone or Telegram",
+      "contactPlaceholder": "Enter your phone or Telegram...",
+      "loading": "Processing your order allocation...",
+      "success": "Order submitted successfully! We will reach out shortly.",
+      "error": "Failed to submit order. Please try again.",
+      "errors": {
+        "customerNameMin": "Name must be at least 2 characters long",
+        "phoneOrTelegramMin": "Please enter a valid phone number or Telegram @username"
+      }
+    }
   }
 }

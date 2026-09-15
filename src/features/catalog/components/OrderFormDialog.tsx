@@ -10,7 +10,8 @@ import { createProductOrder } from "../actions";
 
 import Icon from "@/shared/ui/Icon";
 import ActionBtn from "@/shared/ui/ActionBtn";
-import { toast, Toaster } from "sonner";
+import { toast } from "sonner";
+import { useDictionary } from "@/shared/context/DictionaryContext";
 
 export type Product = {
   id: number;
@@ -31,6 +32,8 @@ export default function OrderFormDialog({
   onClose,
   product,
 }: OrderFormDialogProps) {
+  const dict = useDictionary();
+
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -48,6 +51,7 @@ export default function OrderFormDialog({
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(productSchema),
+    mode: "onTouched",
     defaultValues: {
       productId: "",
       productName: "",
@@ -71,19 +75,34 @@ export default function OrderFormDialog({
     };
 
     toast.promise(createProductOrder(fullOrderPayload), {
-      loading: "Processing your order allocation...",
+      loading:
+        dict.products.form.loading || "Processing your order allocation...",
       success: (res) => {
         if (!res.success)
           throw new Error(res.error || "Order validation rejected.");
 
         reset();
-        return "Order submitted successfully! We will reach our shortly.";
+        return (
+          dict.products.form.success ||
+          "Order submitted successfully! We will reach our shortly."
+        );
       },
       error: (err) =>
-        err.message || "Failed to submit order. Please try again.",
+        err.message ||
+        dict.products.form.error ||
+        "Failed to submit order. Please try again.",
     });
 
     onClose();
+  };
+
+  const getOrderErrorMessage = (errorKey?: string) => {
+    if (!errorKey) return "";
+    if (errorKey === "errors.customerNameMin")
+      return dict.products.form.errors.customerNameMin;
+    if (errorKey === "errors.phoneOrTelegramMin")
+      return dict.products.form.errors.phoneOrTelegramMin;
+    return errorKey;
   };
 
   return (
@@ -91,7 +110,7 @@ export default function OrderFormDialog({
       ref={dialogRef}
       onClose={onClose}
       onClick={(e) => e.target === dialogRef.current && onClose()}
-      className="fixed inset-0 open:flex flex-col m-auto w-full h-fit max-w-2xl bg-background p-6 lg:p-8 rounded-[0.70rem] backdrop:bg-foreground/50 shadow-2xl"
+      className="fixed inset-0 open:flex flex-col m-auto w-full h-fit max-w-2xl bg-background p-6 md:rounded lg:p-8 backdrop:bg-foreground/50 shadow-2xl"
     >
       <form method="dialog" className="absolute right-6 top-3">
         <button
@@ -104,16 +123,16 @@ export default function OrderFormDialog({
 
       <div className="pt-2 flex flex-col gap-5">
         <h3 className="font-comfortaa text-center font-bold text-[1.5rem] border-b border-dashed border-foreground/50 pb-5">
-          Checkout
+          {dict.products.form.title}
         </h3>
 
-        <div className="text-2xl flex justify-between items-center border-b border-dashed border-foreground/50 pb-5">
+        <div className="text-2xl flex justify-between flex-wrap gap-1 items-center border-b border-dashed border-foreground/50 pb-5">
           <p>{product?.title}</p>
           <strong> ${product?.price}</strong>
         </div>
 
         <p className="text-[0.88rem] leading-[160%]">
-          Please provide your details below to finalize your booking.
+          {dict.products.form.subtitle}
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
@@ -126,14 +145,14 @@ export default function OrderFormDialog({
 
           <div>
             <label htmlFor="customerName" className="leading-[160%]">
-              Name
+              {dict.products.form.customerName}
             </label>
             <input
               {...register("customerName")}
-              className={`leading-[160%] placeholder:text-foreground/60 bg-foreground/5 focus:border-foreground/15 outline-none block w-full px-3 py-2 border rounded-[0.38rem] pb-2 caret-foreground ${errors.customerName ? "text-error border-error" : "text-foreground border-foreground/15"}`}
+              className={`leading-[160%] placeholder:text-foreground/60 bg-foreground/5 outline-none block w-full px-3 py-2 border rounded-[0.38rem] pb-2 caret-foreground ${errors.customerName ? "text-error border-error focus:border-error" : "text-foreground border-foreground/15 focus:border-foreground/15"}`}
               type="text"
               id="customerName"
-              placeholder="Enter your name..."
+              placeholder={dict.products.form.namePlaceholder}
               aria-required="true"
               aria-invalid={errors.customerName ? "true" : "false"}
               aria-describedby={
@@ -146,20 +165,20 @@ export default function OrderFormDialog({
                 id="customerName-error"
                 className="text-xs text-error"
               >
-                {errors.customerName.message}
+                {getOrderErrorMessage(errors.customerName.message)}
               </p>
             )}
           </div>
           <div>
             <label htmlFor="phoneOrTelegram" className="leading-[160%]">
-              Phone or Telegram
+              {dict.products.form.phoneOrTelegram}
             </label>
             <input
               {...register("phoneOrTelegram")}
-              className={`leading-[160%] placeholder:text-foreground/60 bg-foreground/5 focus:border-foreground/15 outline-none block w-full px-3 py-2 border rounded-[0.38rem] pb-2 caret-foreground ${errors.phoneOrTelegram ? "text-error border-error" : "text-foreground border-foreground/15"}`}
+              className={`leading-[160%] placeholder:text-foreground/60 bg-foreground/5 outline-none block w-full px-3 py-2 border rounded-[0.38rem] pb-2 caret-foreground ${errors.phoneOrTelegram ? "text-error border-error focus:border-error" : "text-foreground border-foreground/15 focus:border-foreground/15"}`}
               type="text"
               id="phoneOrTelegram"
-              placeholder="Enter your phone or Telegram..."
+              placeholder={dict.products.form.contactPlaceholder}
               aria-required="true"
               aria-invalid={errors.phoneOrTelegram ? "true" : "false"}
               aria-describedby={
@@ -172,13 +191,15 @@ export default function OrderFormDialog({
                 id="phoneOrTelegram-error"
                 className="text-xs text-error"
               >
-                {errors.phoneOrTelegram.message}
+                {getOrderErrorMessage(errors.phoneOrTelegram.message)}
               </p>
             )}
           </div>
 
           <ActionBtn type="submit" disabled={isSubmitting} className="mt-6">
-            Buy
+            {isSubmitting
+              ? dict.common.buttons.processing
+              : dict.common.buttons.buy}
           </ActionBtn>
         </form>
       </div>

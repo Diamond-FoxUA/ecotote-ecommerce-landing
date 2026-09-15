@@ -19,6 +19,7 @@ export default function ContactForm() {
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(contactSchema),
+    mode: "onTouched"
   });
 
   const onSubmit = async (data: ContactInput) => {
@@ -36,6 +37,16 @@ export default function ContactForm() {
     });
   };
 
+  const getErrorMessage = (errorKey?: string) => {
+    if (!errorKey) return "";
+    if (errorKey === "errors.nameMin") return dict.contact.form.errors.nameMin;
+    if (errorKey === "errors.emailInvalid")
+      return dict.contact.form.errors.emailInvalid;
+    if (errorKey === "errors.messageMin")
+      return dict.contact.form.errors.messageMin;
+    return errorKey;
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
       <div
@@ -51,7 +62,7 @@ export default function ContactForm() {
         </label>
         <input
           {...register("name")}
-          className={`leading-[160%] placeholder:text-foreground/60 bg-foreground/5 focus:border-foreground/15 outline-none block w-full px-3 py-2 border rounded-[0.38rem] pb-2 caret-foreground ${errors.name ? "text-error border-error" : "text-foreground border-foreground/15"}`}
+          className={`leading-[160%] placeholder:text-foreground/60 bg-foreground/5 outline-none block w-full px-3 py-2 border rounded-[0.38rem] pb-2 caret-foreground ${errors.name ? "text-error border-error focus:border-error" : "text-foreground border-foreground/15  focus:border-foreground/15"}`}
           type="text"
           aria-required="true"
           aria-invalid={errors.name ? "true" : "false"}
@@ -64,7 +75,7 @@ export default function ContactForm() {
           id="name-error"
           className="text-[0.75rem] text-error leading-[160%]"
         >
-          {errors.name?.message}
+          {getErrorMessage(errors.name?.message)}
         </p>
       </div>
 
@@ -74,7 +85,7 @@ export default function ContactForm() {
         </label>
         <input
           {...register("email")}
-          className="leading-[160%] placeholder:text-foreground/60 bg-foreground/5 focus:border-foreground/15 outline-none block w-full px-3 py-2 border border-foreground/15 rounded-[0.38rem] pb-2 caret-foreground"
+          className={`leading-[160%] placeholder:text-foreground/60 bg-foreground/5 outline-none block w-full px-3 py-2 border rounded-[0.38rem] pb-2 caret-foreground ${errors.email ? "text-error border-error focus:border-error" : "text-foreground border-foreground/15 focus:border-foreground/15"}`}
           type="email"
           id="email"
           aria-required="true"
@@ -87,7 +98,7 @@ export default function ContactForm() {
           id="email-error"
           className="text-[0.75rem] text-error leading-[160%]"
         >
-          {errors.email?.message}
+          {getErrorMessage(errors.email?.message)}
         </p>
       </div>
 
@@ -97,7 +108,7 @@ export default function ContactForm() {
         </label>
         <textarea
           {...register("message")}
-          className="leading-[160%] placeholder:text-foreground/60 bg-foreground/5 focus:border-foreground/15 outline-none block w-full h-45 px-3 py-2 border border-foreground/15 rounded-[0.38rem] pb-2 resize-none overflow-y-auto caret-foreground"
+          className={`leading-[160%] placeholder:text-foreground/60 bg-foreground/5 outline-none block w-full h-45 px-3 py-2 border rounded-[0.38rem] pb-2 caret-foreground resize-none overflow-y-auto ${errors.message ? "text-error border-error focus:border-error" : "text-foreground border-foreground/15 focus:border-foreground/15"}`}
           id="message"
           placeholder={dict.contact.form.messagePlaceholder}
           maxLength={200}
@@ -110,7 +121,7 @@ export default function ContactForm() {
           id="message-error"
           className="text-[0.75rem] text-error leading-[160%]"
         >
-          {errors.message?.message}
+          {getErrorMessage(errors.message?.message)}
         </p>
       </div>
 
@@ -119,7 +130,7 @@ export default function ContactForm() {
         className="md:max-w-62.25 lg:max-w-49.5"
         disabled={isSubmitting}
       >
-        {dict.common.buttons.send}
+        {isSubmitting ? dict.common.buttons.sending : dict.common.buttons.send}
       </ActionBtn>
     </form>
   );

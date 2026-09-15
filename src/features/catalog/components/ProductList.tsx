@@ -1,15 +1,18 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { Product } from "./OrderFormDialog";
 
 import ActionBtn from "@/shared/ui/ActionBtn";
-import { useDictionary } from "@/shared/context/DictionaryContext";
 import ProductImg from "./ProductImg";
 import OrderFormDialog from "./OrderFormDialog";
+import { toast } from "sonner";
+import { useDictionary } from "@/shared/context/DictionaryContext";
 
 export default function ProductList() {
   const dict = useDictionary();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
+  const listRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     if (selectedProduct) {
@@ -21,9 +24,51 @@ export default function ProductList() {
     return () => document.body.classList.remove("overflow-hidden");
   }, [selectedProduct]);
 
+  useEffect(() => {
+    const currentSection = listRef.current;
+    if (!currentSection) return;
+
+    let hasTriggered = false;
+
+    const handleScroll = () => {
+      if (hasTriggered) return;
+      const rect = currentSection.getBoundingClientRect();
+
+      if (rect.top <= window.innerHeight - 100) {
+        hasTriggered = true;
+
+        toast.info(dict.products.demoNotice.title, {
+          className: "flex-col items-start gap-4 p-5 max-w-sm w-full",
+          description: dict.products.demoNotice.text,
+          duration: Infinity,
+          action: {
+            label: dict.products.demoNotice.buttonLink,
+            onClick: () => {
+              window.open(
+                "https://t.me/ecotote_notifications_demo",
+                "_blank",
+                "noopener,noreferrer",
+              );
+            },
+          },
+        });
+        window.removeEventListener("scroll", handleScroll);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [dict]);
+
   return (
     <>
-      <ul className="flex flex-col gap-10 md:flex-row md:flex-wrap md:gap-x-6 md:gap-y-12 lg:gap-y-16 w-full items-center md:items-stretch justify-center">
+      <ul
+        ref={listRef}
+        className="flex flex-col gap-10 md:flex-row md:flex-wrap md:gap-x-6 md:gap-y-12 lg:gap-y-16 w-full items-center md:items-stretch justify-center"
+      >
         {dict.products.products.map((p) => (
           <li
             key={p.id}
