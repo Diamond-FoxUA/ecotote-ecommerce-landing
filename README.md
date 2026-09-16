@@ -1,6 +1,6 @@
 # 🌿 EcoTote — Premium Eco-Commerce Single Page Application
 
-An engineering-grade, highly optimized eco-commerce landing platform built using modern architectural patterns in **Next.js 15 (App Router)** and **TypeScript**.
+An engineering-grade, highly optimized eco-commerce landing platform built using modern architectural patterns in **Next.js 16 (App Router)** and **TypeScript**.
 
 This production-ready single-page application showcases cutting-edge frontend capabilities, fluid interactive state-stitching, comprehensive internationalization (i18n), and an automated Server Action serverless data routing architecture that converts raw form interactions directly into an instant Telegram CRM notification network.
 
@@ -36,7 +36,7 @@ This production-ready single-page application showcases cutting-edge frontend ca
 
 ## 🛠️ Stack & Dependency Architecture
 
-- **Core Framework**: Next.js 15 (App Router, Server Actions)
+- **Core Framework**: Next.js 16 (App Router, Server Actions)
 - **Programming Language**: TypeScript
 - **Data Validation Layer**: Zod
 - **Form Architecture**: React Hook Form
