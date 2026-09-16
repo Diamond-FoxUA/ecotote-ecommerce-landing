@@ -3,13 +3,13 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     qualities: [75, 90],
-    unoptimized: true,
+    unoptimized: true
   },
 
   async redirects() {
     return [
       {
-        source: "/((?!img|icons|favicon\\.ico|.*\\..*).*)",
+        source: "/",
         destination: "/en",
         permanent: false,
       },
