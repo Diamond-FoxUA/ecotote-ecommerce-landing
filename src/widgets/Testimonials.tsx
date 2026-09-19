@@ -25,6 +25,7 @@ export default async function Testimonials({ params }: TestimonialsParams) {
           <li key={c.id} className="flex w-full">
             <figure className="flex flex-1 flex-col h-full gap-3">
               <Rating
+                role="img"
                 aria-label={`${dict.testimonials.ratingCaption} ${c.rating} ${dict.testimonials.starsCaption}`}
                 rating={c.rating}
               />

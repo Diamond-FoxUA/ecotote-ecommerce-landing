@@ -54,7 +54,7 @@ export default function NavList({ onClose, className }: NavListProps) {
           <button
             type="button"
             onClick={(e) => handleScroll(e, i.link)}
-            className="font-fira text-[1rem] leading-[160%] border-b border-transparent hover:border-foreground text-foreground active:text-green-accent active:border-green-accent pb-1 transition-all duration-300 cursor-pointer text-left w-full lg:w-auto outline-none"
+            className="font-fira text-[1rem] leading-[160%] w-fit border-b border-transparent hover:border-foreground text-foreground active:text-green-accent active:border-green-accent pb-1 transition-all duration-300 cursor-pointer text-left lg:w-auto outline-none"
           >
             {i.text}
           </button>

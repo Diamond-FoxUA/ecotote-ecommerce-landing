@@ -2,6 +2,7 @@ import Icon from "@/shared/ui/Icon";
 
 type RatingProps = {
   rating: number;
+  role: string;
 };
 
 export default function Rating({ rating, ...props }: RatingProps) {
