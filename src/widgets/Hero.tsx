@@ -1,7 +1,7 @@
 import { getDictionary } from "@/dictionaries";
 
 import HeroImg from "./HeroImg";
-import LinkBtn from "@/shared/ui/LinkBtn";
+import NavBtn from "@/shared/ui/NavBtn";
 
 type HeroProps = {
   params: Promise<{ locale: string }>;
@@ -30,7 +30,7 @@ export default async function Hero({ params }: HeroProps) {
             {dict.homepage.description}
           </p>
 
-          <LinkBtn href="#products">{dict.common.buttons.buyNow}</LinkBtn>
+          <NavBtn />
         </div>
       </div>
 
