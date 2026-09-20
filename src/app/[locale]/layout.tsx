@@ -6,6 +6,7 @@ import { getDictionary } from "@/dictionaries";
 import { DictionaryProvider } from "@/shared/context/DictionaryContext";
 
 import { Toaster } from "sonner";
+import ScrollToTop from "@/shared/ui/ScrollToTop";
 import Header from "@/widgets/Header";
 import Footer from "@/widgets/Footer";
 
@@ -91,7 +92,8 @@ export default async function LocaleLayoutRootLayout({
           <main className="flex flex-1 flex-col">{children}</main>
           <Footer />
 
-          <Toaster richColors closeButton />
+          <ScrollToTop />
+          <Toaster richColors closeButton position="top-right" />
         </DictionaryProvider>
       </body>
     </html>
