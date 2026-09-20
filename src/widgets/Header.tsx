@@ -10,6 +10,8 @@ import LangSwitcher from "@/shared/ui/LangSwitcher";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -21,9 +23,31 @@ export default function Header() {
     return () => document.body.classList.remove("overflow-hidden");
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isMenuOpen) return;
+
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > 50 && currentScrollY > lastScrollY) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY, isMenuOpen]);
+
   return (
     <>
-      <header className="fixed z-50 w-full py-4 px-5 md:px-8 lg:px-16 lg:py-5.75 bg-green-bg">
+      <header
+        className={`fixed z-50 ${isVisible ? "translate-y-0" : "-translate-y-full"} w-full py-4 px-5 md:px-8 lg:px-16 lg:py-5.75 bg-green-bg transition-transform duration-300`}
+      >
         <div className="flex justify-between items-center">
           <div className="hover:scale-110 active:scale-90 transition-transform duration-300">
             <Logo className="lg:w-[106.51px] lg:h-[45.65px]" />
