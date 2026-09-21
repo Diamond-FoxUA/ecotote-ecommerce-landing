@@ -16,7 +16,7 @@ export default function ProductImg({ src, alt, className }: ProductImgProps) {
         alt={alt}
         fill
         className="object-cover rounded-4xl"
-        quality={90}
+        quality={75}
         sizes="(max-width: 767px) 288px, (max-width: 1439px) 340px, 310px"
       />
     </div>
