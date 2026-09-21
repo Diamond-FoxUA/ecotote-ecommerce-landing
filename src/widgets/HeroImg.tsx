@@ -26,14 +26,14 @@ export default async function HeroImg({ params }: HeroImgProps) {
     alt: imgAlt,
     width: 704,
     height: 267.22,
-    quality: 90,
+    quality: 75,
   });
   const { props: mobileProps } = getImageProps({
     src: heroImgMob,
     alt: imgAlt,
     width: 288,
     height: 285,
-    quality: 90,
+    quality: 75,
   });
 
   return (
