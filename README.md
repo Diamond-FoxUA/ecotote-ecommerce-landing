@@ -4,6 +4,9 @@ An engineering-grade, highly optimized eco-commerce landing platform built using
 
 This production-ready single-page application showcases cutting-edge frontend capabilities, fluid interactive state-stitching, comprehensive internationalization (i18n), and an automated Server Action serverless data routing architecture that converts raw form interactions directly into an instant Telegram CRM notification network.
 
+**Live:** [EcoTote Demo](https://ecotote-ecommerce-landing.vercel.app) <br />
+**Design Mockup(provided by GoIT):** [Figma](https://www.figma.com/design/RCf95cRtisUxC8gsNFAFAp/EcoTote?node-id=5999-10563&p=f&t=Hc8UKrNK4gg8xZJe-0)
+
 ---
 
 ## 🚀 Key Feature Engineering
